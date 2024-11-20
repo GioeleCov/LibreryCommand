@@ -13,7 +13,6 @@ import java.util.Scanner;
 
 public class ShellController {
 
-    private final GestioneCatalogo g;
     private final Scanner scanner;
     private static boolean exit;
     private final Map<String, Command> commandMap;
@@ -21,12 +20,11 @@ public class ShellController {
 
     public ShellController(GestioneCatalogo gestioneCatalogo) {
         exit = false;
-        this.g = gestioneCatalogo;
         this.scanner = new Scanner(System.in);
         this.commandMap = new HashMap<>();
-        this.commandMap.put("1", new AddBookCommand(g, scanner));
-        this.commandMap.put("2", new ShowCatalog(g, scanner));
-        this.commandMap.put("3", new ResearchBookByTitleCommand(g, scanner));
+        this.commandMap.put("1", new AddBookCommand(gestioneCatalogo, scanner));
+        this.commandMap.put("2", new ShowCatalog(gestioneCatalogo, scanner));
+        this.commandMap.put("3", new ResearchBookByTitleCommand(gestioneCatalogo, scanner));
         this.commandMap.put("4", new ExitCommand());
 
     }
