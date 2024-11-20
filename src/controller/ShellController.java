@@ -13,18 +13,22 @@ import java.util.Scanner;
 
 public class ShellController {
 
-    private final GestioneCatalogo g = new GestioneCatalogo();
-    private final Scanner scanner = new Scanner(System.in);
-    private static boolean exit = false;
+    private final GestioneCatalogo g;
+    private final Scanner scanner;
+    private static boolean exit;
     private final Map<String, Command> commandMap;
 
 
     public ShellController() {
+        exit = false;
+        this.g = new GestioneCatalogo();
+        this.scanner = new Scanner(System.in);
         this.commandMap = new HashMap<>();
         this.commandMap.put("1", new AddBookCommand(g, scanner));
         this.commandMap.put("2", new ShowCatalog(g, scanner));
         this.commandMap.put("3", new ResearchBookByTitleCommand(g, scanner));
         this.commandMap.put("4", new ExitCommand());
+
     }
 
     public static void setExit(boolean exit) {
@@ -35,9 +39,11 @@ public class ShellController {
 
         if (commandMap.get(input) != null) {
             Command command = commandMap.get(input);
-
             command.execute();
+            return;
         }
+
+        System.out.println("Command not found");
     }
 
 
@@ -56,8 +62,6 @@ public class ShellController {
             String input = scanner.nextLine();
             System.out.println();
             launchCommand(input);
-
-
         }while (!exit);
     }
 
