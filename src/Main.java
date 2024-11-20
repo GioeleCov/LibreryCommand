@@ -1,9 +1,11 @@
 import controller.ShellController;
+import model.GestioneCatalogo;
 
 public class Main {
 
     public static void main(String[] args) {
-        ShellController shellController = new ShellController();
+        GestioneCatalogo g = new GestioneCatalogo();
+        ShellController shellController = new ShellController(g);
         shellController.handleShellLoop();
     }
 }

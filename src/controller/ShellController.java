@@ -19,9 +19,9 @@ public class ShellController {
     private final Map<String, Command> commandMap;
 
 
-    public ShellController() {
+    public ShellController(GestioneCatalogo gestioneCatalogo) {
         exit = false;
-        this.g = new GestioneCatalogo();
+        this.g = gestioneCatalogo;
         this.scanner = new Scanner(System.in);
         this.commandMap = new HashMap<>();
         this.commandMap.put("1", new AddBookCommand(g, scanner));
